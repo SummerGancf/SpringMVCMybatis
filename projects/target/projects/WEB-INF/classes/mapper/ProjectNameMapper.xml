@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yihu.mybatis.dao.ProjectNameMapper" >
+  <resultMap id="BaseResultMap" type="com.yihu.mybatis.entity.ProjectName" >
+    <id column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    projectid, projectname, date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Project_Name
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </select>
+
+  <select id="findAll" resultType="ProjectName">
+    select *
+    from Project_Name
+    ORDER BY projectid DESC
+  </select>
+  <!--
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Project_Name
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yihu.mybatis.entity.ProjectName" >
+    insert into Project_Name (projectid, projectname, date
+      )
+    values (#{projectid,jdbcType=INTEGER}, #{projectname,jdbcType=VARCHAR}, #{date,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yihu.mybatis.entity.ProjectName" >
+    insert into Project_Name
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="projectname != null" >
+        projectname,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yihu.mybatis.entity.ProjectName" >
+    update Project_Name
+    <set >
+      <if test="projectname != null" >
+        projectname = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+    </set>
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yihu.mybatis.entity.ProjectName" >
+    update Project_Name
+    set projectname = #{projectname,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE}
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </update>
+  -->
+</mapper>
