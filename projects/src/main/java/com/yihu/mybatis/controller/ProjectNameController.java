@@ -47,18 +47,15 @@ public class ProjectNameController {
     }
 
     @RequestMapping(value = "/projectAll", method = RequestMethod.GET)
-    public String projectAll(Model model) {
-        List<ProjectName> projectNameAll = projectNameService.getProjectAll();
-        System.out.print(JSON.toJSON(projectNameAll));
-        model.addAttribute("projectAll",JSON.toJSON(projectNameAll));
+    public String checkProject() {
         return "projectAll";
+
     }
-    @RequestMapping(value = "/projectAll", method = RequestMethod.POST)
-    public String checkProjectAll(Model model) {
+    @RequestMapping(value = "/projectAll/query", method = RequestMethod.GET)
+    public @ResponseBody String checkProjectAll() {
         List<ProjectName> projectNameAll = projectNameService.getProjectAll();
         System.out.print(JSON.toJSON(projectNameAll));
-        model.addAttribute("projectAll",JSON.toJSON(projectNameAll));
-        return "projectAll";
+        return JSON.toJSONString(projectNameAll);
 
     }
 
